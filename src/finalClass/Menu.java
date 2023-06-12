@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class Menu {
 	
 	static Scanner console = new Scanner(System.in);
@@ -1108,6 +1111,476 @@ public class Menu {
 	}
     
     public static void report() {
+
+		System.out.printf("1.Namber of human resources\n");
+		System.out.printf("2.Number of animal resources\n");
+		System.out.printf("3.Number of plant resources\n");
+		System.out.printf("4.Number of territorial resources\n");
+		System.out.printf("5.Back to menu\n");
+		System.out.printf("Enter the desired number : \n");
+		int x = console.nextInt();
+		switch(x)
+		{
+			case 1 : numhumanres();
+			break;
+			case 2 : numanimalres();
+			break;
+			case 3 :
+			break;
+			case 4 :
+			break;
+			case 5 : menu();
+		}
+
+		
+	}
+
+	public  static void numhumanres()
+	{
+		try {
+            FileReader numhuman = new FileReader("human.txt");
+
+            BufferedReader reporthuman = new BufferedReader(numhuman);
+
+			int ctork = 0,  cfars = 0,  ckord = 0,  ctorkaman = 0 , carab = 0,  cbaloch = 0,
+			ctorkmale = 0 , cfarsmale = 0 , ckordmale = 0 , ctorkamanmale = 0 , carabmale = 0 , cbalochmale = 0, 
+			ctorkfemale = 0, cfarsfemale = 0 , ckordfemale = 0 ,ctorkamanfemale = 0 , carabfemale = 0 ,cbalochfemale = 0 ;
+
+			String line = null;
+
+            while( (line = reporthuman.readLine() ) != null ) {
+				int check = line.compareTo("tork");
+                if( check == 0)
+				{
+					ctork++ ;
+					line = reporthuman.readLine();
+				    check = line.compareTo("male");
+					if(check == 0)
+					{
+						ctorkmale++;
+					}
+					else
+					{
+						ctorkfemale++;
+					}
+				}
+				else
+				{
+					
+					check = line.compareTo("farse");
+                    if( check == 0)
+				    {
+					    cfars++ ;
+					    line = reporthuman.readLine();
+				        check = line.compareTo("male");
+					    if(check == 0)
+					    {
+						    cfarsmale++;
+					    }
+					    else
+					    {
+						    cfarsfemale++;
+					    }
+				    }
+					else
+					{
+						check = line.compareTo("arab");
+                        if( check == 0)
+				        {
+					        carab++ ;
+					        line = reporthuman.readLine();
+				            check = line.compareTo("male");
+					        if(check == 0)
+					        {
+						        carabmale++;
+					        }
+					        else
+					        {
+						        carabfemale++;
+					        }
+				        }
+						else
+						{
+							check = line.compareTo("kord");
+							if( check == 0)
+				            {
+					            ckord++ ;
+					            line = reporthuman.readLine();
+				                check = line.compareTo("male");
+					            if(check == 0)
+					            {
+						            ckordmale++;
+					            }
+					            else
+					            {
+						            ckordfemale++;
+					            }
+				            }
+							else
+							{
+								check = line.compareTo("torkaman");
+							    if( check == 0)
+				                {
+					                ctorkaman++ ;
+					                line = reporthuman.readLine();
+				                    check = line.compareTo("male");
+					                if(check == 0)
+					                {
+						                ctorkamanmale++;
+					                }
+					                else
+					                {
+						                ctorkamanfemale++;
+					                }
+				                }
+								else
+								{
+									check = line.compareTo("baloch");
+							        if( check == 0)
+				                    {
+					                    cbaloch++ ;
+					                    line = reporthuman.readLine();
+				                        check = line.compareTo("male");
+					                    if(check == 0)
+					                    {
+						                    cbalochmale++;
+					                    }
+					                    else
+					                    {
+						                    cbalochfemale++;
+					                    }
+				                    }
+								}
+							}
+
+						}
+
+					}
+				}
+            }
+			 reporthuman.close();
+			 
+			System.out.printf("qhom    mard     zan    kol \n");
+			System.out.printf("tork      %d      %d    %d \n", ctorkmale , ctorkfemale , ctork);
+			System.out.printf("kord      %d      %d    %d \n", ckordmale , ckordfemale , ckord);
+			System.out.printf("fars      %d      %d    %d \n", cfarsmale , cfarsfemale , cfars);
+			System.out.printf("arab      %d      %d    %d \n", carabmale , carabfemale , carab);
+			System.out.printf("torkaman  %d      %d    %d \n", ctorkamanmale , ctorkamanfemale , ctorkaman);
+			System.out.printf("baloch    %d      %d    %d \n", cbalochmale , cbalochfemale , cbaloch);
+			System.out.printf("kol jamiat : %d nafar\n", (ctork + ckord + cfars + carab + cbaloch + ctorkaman));
+			System.out.printf("__________________________________ \n");
+			System.out.printf("\n1.Details by ethnicity \n");
+			System.out.printf("2.Details by gender \n");
+			System.out.printf("3.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int x = console.nextInt();
+			switch(x)
+			{
+				case 1 : 
+				System.out.println("1.fars\n2.arab\n3.tork\n4.kord\n5.baloch\n6.torkaman\n7.Back\n");
+				System.out.printf("Enter the desired number : \n");
+				x = console.nextInt();
+				if((x>0) && (x<8))
+				{
+					if(x == 7){numhumanres();}
+					else{numhumanres1(x);}
+				}
+				else{System.out.printf("incorecct\n");}
+				break;
+				case 2 :
+				System.out.println("1.male\n2.female\n3.Back\n");
+				System.out.printf("Enter the desired number : \n");
+				x = console.nextInt();
+				if((x>0) && (x<4))
+				{
+					if(x == 3){numhumanres();}
+					else{numhumanres2(x);}
+				}
+				else{System.out.printf("incorecct\n");}
+				break;
+				case 3 : report();
+				break;
+				default:System.out.printf("incorecct\n");
+			}
+
+
+
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+	}
+
+	public  static void numhumanres1(int x)
+	{
+		try {
+			FileReader numhuman = new FileReader("human.txt");
+        BufferedReader reportbygh = new BufferedReader(numhuman);
+		String line1 = null;
+		String line2 = null;
+		System.out.printf("id             gensiat     nam    family       sen            salrooztavalod                 salroozmarg \n");
+		if(x == 1)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("farse");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+			
+		}
+		if(x == 2)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("arab");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+		}
+		if(x == 3)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("tork");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+		}
+		if(x == 4)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("kord");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+		}
+		if(x == 5)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("baloch");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+		}
+		if(x == 6)
+		{
+			while( (line1 = reportbygh.readLine() ) != null) 
+			{
+				line2 = reportbygh.readLine();
+				int check = line2.compareTo("torkaman");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+						System.out.printf("%10s", line2);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 10 ; i++)
+					{
+						line2 = reportbygh.readLine();
+					}
+				}
+
+			}
+
+		}
+		reportbygh.close();
+		System.out.printf("\n");
+		numhumanres();
+
+		} catch(IOException e) {
+            e.printStackTrace();
+        }
+
+	}
+	public  static void numhumanres2(int x)
+	{
+		try {
+			FileReader numhuman = new FileReader("human.txt");
+        BufferedReader reportbyge = new BufferedReader(numhuman);
+		String line1 = null;
+		String line2 = null;
+		String line3 = null;
+		System.out.printf("id              ghom       nam    family       sen            salrooztavalod                 salroozmarg \n");
+
+		if ( x == 1)
+		{
+			while( (line1 = reportbyge.readLine() ) != null) 
+			{
+				line2 = reportbyge.readLine();
+				line3 = reportbyge.readLine();
+				int check = line3.compareTo("male");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					System.out.printf("%10s", line2);
+					for(int i = 0 ; i< 9 ; i++)
+					{
+						line3 = reportbyge.readLine();
+						System.out.printf("%10s", line3);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 9 ; i++)
+					{
+						line2 = reportbyge.readLine();
+					}
+				}
+
+			}
+
+		}
+		if ( x == 2)
+		{
+			while( (line1 = reportbyge.readLine() ) != null) 
+			{
+				line2 = reportbyge.readLine();
+				line3 = reportbyge.readLine();
+				int check = line3.compareTo("female");
+				if(check == 0)
+				{
+					System.out.printf("%10s", line1);
+					System.out.printf("%10s", line2);
+					for(int i = 0 ; i< 9 ; i++)
+					{
+						line3 = reportbyge.readLine();
+						System.out.printf("%10s", line3);
+					}
+					System.out.printf("\n");
+
+				}
+				else
+				{
+					for(int i = 0 ; i< 9 ; i++)
+					{
+						line2 = reportbyge.readLine();
+					}
+				}
+
+			}
+
+		}
+		reportbyge.close();
+		System.out.printf("\n");
+		numhumanres();
+
+			
+		} catch(IOException e) {
+            e.printStackTrace();
+		}
+
+	}
+
+	public static void numanimalres()
+	{
 		
 	}
     
