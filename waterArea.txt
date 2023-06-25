@@ -1,5 +1,12 @@
-
 lake
 5
 5
+5
+lake
+shoor
+5000
+3
+sea
+shirin
+500
 5

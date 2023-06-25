@@ -370,7 +370,7 @@ public class Menu {
 			      BufferedWriter Writer = new BufferedWriter(myWriter);
 			      Writer.write(person.getId());
 			      Writer.append("\n");
-			      Writer.write("farse");
+			      Writer.write("fars");
 			      Writer.append("\n");
 			      Writer.append(temp);//gender
 			      Writer.append("\n");
@@ -1127,7 +1127,416 @@ public class Menu {
 	}
     
     public static void search() {
+		System.out.printf("search in: \n1.human resources\n");
+		System.out.printf("2.animal resources\n");
+		System.out.printf("3.plant resources\n");
+		System.out.printf("4.territorial resources\n");
+		System.out.printf("5.Back to menu\n");
+		System.out.printf("Enter the desired number : \n");
+		int x = console.nextInt();
+		switch(x)
+		{
+			case 1 : System.out.printf("1.based on ethnicity\n2.based on gender\n3.based on id\n4.back\n");
+			System.out.printf("Enter the desired number : \n");
+		    int x1 = console.nextInt();
+			if((0<x1)&& (x1<5))
+			{
+				if(x1 == 4){search();}
+				else{searchINhuman(x1);}
+
+			}
+			else{System.out.printf("incorecct\n"); search();}
+			break;
+			case 2 : System.out.printf("1.based on type\n2.based name\n3.based on id (just for special animals)\n4.back\n");
+			System.out.printf("Enter the desired number : \n");
+		    int x2 = console.nextInt();
+			if((0<x2)&& (x2<5))
+			{
+				if(x2 == 4){search();}
+				else{searchINanimal(x2);}
+
+			}
+			break;
+			case 3 : searchINplant();
+			break;
+			case 4 :
+			break;
+			case 5 : menu();
+			break;
+			default : System.out.printf("incorecct\n"); search();
+
+		}
 		
+	}
+	public static void searchINhuman(int x)
+	{
+		try {
+			FileReader searchhuman = new FileReader("human.txt");
+
+        BufferedReader searchINhuman = new BufferedReader(searchhuman);
+		String v;
+
+		if(x == 1)//ethnicity
+		{
+			System.out.printf("Enter the name of the ethnicity : ");
+			v = console.next();
+				
+			String line1 = null , line2 = null ;
+			int check;
+
+
+			while ((line1 = searchINhuman.readLine()) != null) {
+				line2 = searchINhuman.readLine();
+				check = line2.compareTo(v);
+				if(check == 0)
+				{
+					System.out.printf("%s", line1 );
+					for(int i = 0 ; i < 10 ; i++)
+					{
+						line2 = searchINhuman.readLine();
+						System.out.printf("%10s", line2);
+
+					}
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 10 ; i++)
+					{
+						line2 = searchINhuman.readLine();
+
+					}
+
+				}	
+
+			}
+			searchINhuman.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+
+
+		}
+		if(x == 2)//gender
+		{
+			System.out.printf("Enter gender : ");
+			v = console.next();
+
+			String line1 = null , line2 = null, line3 = null ;
+			int check;
+
+
+			while ((line1 = searchINhuman.readLine()) != null) {
+				line2 = searchINhuman.readLine();
+				line3 = searchINhuman.readLine();
+				check = line3.compareTo(v);
+				if(check == 0)
+				{
+					System.out.printf("%s%10S", line1 , line2 );
+					for(int i = 0 ; i < 9 ; i++)
+					{
+						line3 = searchINhuman.readLine();
+						System.out.printf("%10s", line3);
+
+					}
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 9 ; i++)
+					{
+						line3 = searchINhuman.readLine();
+
+					}
+
+				}	
+
+			}
+			searchINhuman.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+			
+
+		}
+		if(x == 3)//id 
+		{
+			System.out.printf("Enter id : ");
+			v = console.next();
+
+			String line1 = null;
+			int check;
+
+
+			while ((line1 = searchINhuman.readLine()) != null) {
+				check = line1.compareTo(v);
+				if(check == 0)
+				{
+					for(int i = 0 ; i < 11 ; i++)
+					{
+						if(i>=1)
+						{
+							line1 = searchINhuman.readLine();
+						    System.out.printf("%10s", line1);
+							continue;
+						}
+						line1 = searchINhuman.readLine();
+						System.out.printf("%s", line1);
+
+					}
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 11 ; i++)
+					{
+						line1 = searchINhuman.readLine();
+
+					}
+
+				}	
+
+			}
+			searchINhuman.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+
+		}
+
+
+		} catch(IOException e) {
+            e.printStackTrace();
+        }
+		
+		
+	}
+
+	public static void searchINanimal(int x)
+	{
+		try {
+			FileReader searchanimal = new FileReader("animal.txt");
+
+        BufferedReader searchINanimal = new BufferedReader(searchanimal);
+		String v;
+
+		if(x == 1)//type
+		{
+			System.out.printf("Enter type : ");
+			v = console.next();
+				
+			String line1 = null , line2 = null ;
+			int check;
+
+
+			while ((line1 = searchINanimal.readLine()) != null) {
+				line2 = searchINanimal.readLine();
+				check = line2.compareTo(v);
+				if(check == 0)
+				{
+					for(int i = 0 ; i < 2 ; i++)
+					{
+						if(i>=1)
+						{
+							line2 = searchINanimal.readLine();
+						    System.out.printf("%10s", line2);
+							continue;
+						}
+						line2 = searchINanimal.readLine();
+						System.out.printf("%s", line2);
+
+					}
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 2 ; i++)
+					{
+						line2 = searchINanimal.readLine();
+
+					}
+
+				}	
+
+			}
+			searchINanimal.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+
+
+		}
+		if(x == 2)//name special
+		{
+			System.out.printf("Enter name : ");
+			v = console.next();
+
+			String line1 = null , line2 = null, line3 = null ;
+			int check;
+
+
+			while ((line1 = searchINanimal.readLine()) != null) {
+				line2 = searchINanimal.readLine();
+				line3 = searchINanimal.readLine();
+				check = line3.compareTo(v);
+				if(check == 0)
+				{
+					System.out.printf("%s", line3);
+					System.out.printf("%10s", line2);
+					line3 = searchINanimal.readLine();
+					System.out.printf("%10s", line3);
+					System.out.printf("\n");
+				}
+				else
+				{
+					
+					line3 = searchINanimal.readLine();
+
+				}	
+
+			}
+			searchINanimal.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+			
+
+		}
+		if(x == 3)//id special
+		{
+			System.out.printf("Enter id : ");
+			v = console.next();
+
+			String line1 = null;
+			int check;
+
+
+			while ((line1 = searchINanimal.readLine()) != null) {
+				check = line1.compareTo(v);
+				if(check == 0)
+				{
+					for(int i = 0 ; i < 3 ; i++)
+					{
+						if(i>=1)
+						{
+							line1 = searchINanimal.readLine();
+						    System.out.printf("%10s", line1);
+							continue;
+						}
+						line1 = searchINanimal.readLine();
+						System.out.printf("%s", line1);
+
+					}
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 3 ; i++)
+					{
+						line1 = searchINanimal.readLine();
+
+					}
+
+				}	
+
+			}
+			searchINanimal.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+
+		}
+
+
+		} catch(IOException e) {
+            e.printStackTrace();
+        }
+
+	}
+
+	public static void searchINplant()
+	{
+		try {
+			FileReader searchplant = new FileReader("plant.txt");
+
+            BufferedReader searchINplant = new BufferedReader(searchplant);
+		    String v;
+		    System.out.printf("Enter type : ");
+		    v = console.next();
+
+		    String line1 = null, line2 = null;
+		    int check;
+
+		    while ((line1 = searchINplant.readLine()) != null) {
+				check = line1.compareTo(v);
+				if(check == 0)
+				{
+					
+					line1 = searchINplant.readLine();
+					line2 = searchINplant.readLine();
+					System.out.printf("%s%10s", line2, line1);
+					System.out.printf("\n");
+				}
+				else
+				{
+					for(int i = 0 ; i < 3 ; i++)
+					{
+						line1 = searchINplant.readLine();
+
+					}
+
+				}
+			}
+			searchINplant.close();
+			int c = 0 ;
+            while(c == 0){
+			System.out.printf("1.Back \n");
+			System.out.printf("Enter the desired number : \n");
+		    int a = console.nextInt();
+			if(a != 1)
+			{System.out.printf("incorecct\n");}
+			else{search();}
+			}
+		
+		} catch(IOException e) {
+            e.printStackTrace();
+        }
 	}
     
     public static void report() {
@@ -1147,7 +1556,19 @@ public class Menu {
 			break;
 			case 3 : numplantres();
 			break;
-			case 4 :
+			case 4 : System.out.printf("1.land\n2.whater area\n3.back");
+		    System.out.printf("Enter the desired number : \n");
+			int x1 = console.nextInt();
+			switch(x1)
+			{
+				case 1 :
+				case 2 : numterritorialres(x1);
+				break;
+				case 3 : report();
+				break;
+				default : System.out.printf("incorecct\n");
+			}
+			
 			break;
 			case 5 : menu();
 			break;
@@ -1190,7 +1611,7 @@ public class Menu {
 				else
 				{
 					
-					check = line.compareTo("farse");
+					check = line.compareTo("fars");
                     if( check == 0)
 				    {
 					    cfars++ ;
@@ -1354,7 +1775,7 @@ public class Menu {
 			while( (line1 = reportbygh.readLine() ) != null) 
 			{
 				line2 = reportbygh.readLine();
-				int check = line2.compareTo("farse");
+				int check = line2.compareTo("fars");
 				if(check == 0)
 				{
 					System.out.printf("%10s", line1);
@@ -1927,6 +2348,45 @@ public class Menu {
 			}
 		} catch(IOException e) {
             e.printStackTrace();
+		}
+
+	}
+
+	public static void numterritorialres(int x)
+	{
+		if(x == 1)
+		{
+			try { 
+				FileReader numland = new FileReader("land.txt");
+
+                BufferedReader reportland = new BufferedReader(numland);
+
+				String line = null , dhecktar = null , line3 = null, type = "type" , hight = "hight", number = "number";
+				int check ;
+
+				while((line = reportland.readLine()) != null)
+				{
+					check = line.compareTo("desert");
+					if(check == 0)
+					{
+						dhecktar = reportland.readLine();
+
+					}
+					
+					line3 = reportland.readLine();
+					
+				}
+
+				
+				
+			} catch(IOException e) {
+            e.printStackTrace();
+		    }
+
+		}
+		if(x == 2)
+		{
+
 		}
 
 	}
