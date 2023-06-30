@@ -1,12 +1,7 @@
 package finalClass;
 
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.BufferedWriter;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 public class Menu {
 	
@@ -35,7 +30,7 @@ public class Menu {
 		case 4 :report();
 			break;
 		case 5 : 
-			System.exit(x);//check beshe
+			System.exit(x);
 			break;
 		default : System.out.printf("incorect\n");
 		        menu();
@@ -51,7 +46,7 @@ public class Menu {
 		case 1 :
 		{
 			System.out.println("Selact the desired option : ");
-			System.out.println("1.human\n2.animal\n3.Back\\n>>>>>");
+			System.out.println("1.human\n2.animal\n3.Back\n>>>>>");
 			int y = console.nextInt();
 			switch (y) {
 			case 1 :
@@ -60,8 +55,9 @@ public class Menu {
 			case 2 :
 				animal();
 				break ;
-			case 3 : record();
-			break;
+			case 3 :
+				record();
+			    break;
 			default :
 			{
 				System.out.println("The desired option is not allowed!!!");
@@ -83,8 +79,9 @@ public class Menu {
 			case 2 :
 				plant() ;
 				break ;
-			case 3 : record();
-			break;
+			case 3 : 
+				record();
+			    break;
 			default :
 			{
 				System.out.println("The desired option is not allowed!!!");
@@ -94,8 +91,9 @@ public class Menu {
 			}
 			break ;
 		}
-		case 3 : menu();
-		break;
+		case 3 : 
+			menu();
+		    break;
 		default :
 		{
 			System.out.println("The desired option is not allowed!!!");
@@ -119,8 +117,9 @@ public class Menu {
 		case 6 :
 			person(k);
 			break ;
-		case 7 : record();
-		break;
+		case 7 : 
+			record();
+		    break;
 		default :
 		{
 			System.out.println("The desired option is not allowed!!!");
@@ -140,7 +139,8 @@ public class Menu {
 		case 2 :
 			animalInfo(i);
 			break ;
-		case 3 : record();
+		case 3 : 
+			record();
 			break;
 		default :
 		{
@@ -169,8 +169,9 @@ public class Menu {
 				waterArea(k);
 				break ;
 			}
-			case 3 : terrene();
-			break;
+			case 3 : 
+				terrene();
+			    break;
 			default :
 			{
 				System.out.println("The desired option is not allowed!!!");
@@ -198,8 +199,9 @@ public class Menu {
 				mountain();
 				break ;
 			}
-			case 5 : terrene() ;
-			break;
+			case 5 : 
+				terrene() ;
+			    break;
 			default :
 			{
 				System.out.println("The desired option is not allowed!!!");
@@ -214,7 +216,6 @@ public class Menu {
 		default :
 		{
 			System.out.println("The desired option is not allowed!!!");
-			System.out.println("*Press the enter key and try again*");///////////////////////
 			terrene() ;
 			break ;
 		}
@@ -260,7 +261,8 @@ public class Menu {
 		case 4 :
 			plantInfo(m);
 			break ;
-		case 5 : record();
+		case 5 : 
+			record();
 			break;
 		default :
 		{
@@ -291,7 +293,13 @@ public class Menu {
 		String age = checkFormat(temp);
 		System.out.println("please enter the id : ");
 		temp = console.nextLine();
-		String id = checkFormat(temp);
+		int Exists = checkID(temp,"human.txt");
+		if (Exists == 1) {//1 vojod darad 
+            System.out.println("This ID already exists!!!\n");
+            System.out.print("Try again\n");
+			menu();
+        }
+        String id = checkFormat(temp);
 		System.out.println("please enter the date of birth : ");
 		System.out.println("-year :");
 		temp = console.nextLine();
@@ -393,7 +401,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -452,7 +460,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -511,7 +519,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -570,7 +578,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -629,7 +637,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -688,7 +696,7 @@ public class Menu {
 			      Writer.append(person.getDayOfDeath());
 			      Writer.append("\n");
 			      Writer.close();
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
 			      e.printStackTrace();
@@ -780,7 +788,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(animal.getNumber());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -822,7 +830,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getNumber());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -847,7 +855,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getNumber());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -887,7 +895,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write("0");
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -908,7 +916,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write("0");
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -930,7 +938,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -964,7 +972,7 @@ public class Menu {
 		      Writer.append("\n");
 		      Writer.write(area.getHeight());
 		      Writer.append("\n");
-		      System.out.println("Successfully wrote to the file.");
+		      System.out.println("Done Successfully");
 		      Writer.close();
 		 } catch (IOException e) {
 		      System.out.println("An error occurred.");
@@ -996,7 +1004,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -1018,7 +1026,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -1040,7 +1048,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -1063,7 +1071,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -1085,7 +1093,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getType());
 			      Writer.append("\n");
-			      System.out.println("Successfully wrote to the file.");
+			      System.out.println("Done Successfully");
 			      Writer.close();
 			 } catch (IOException e) {
 			      System.out.println("An error occurred.");
@@ -1122,10 +1130,228 @@ public class Menu {
 		}
 	}
 	
+	public static int checkID(String temp , String filePath) {
+        String newString = temp ;
+        String line;
+        boolean stringExists = false;
+        BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(filePath));
+			while ((line = reader.readLine()) != null) {
+			    if (line.equals(newString)) {
+			        stringExists = true;
+			        break;
+			    }
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //1 vojod darad 0 vojod nadarad
+        if (stringExists) {
+            return 1 ;
+        } else {
+            return 0 ;
+        }
+    }
+	
     public static void edit() {
-		
+    	System.out.printf("Enter the part number you want to edit\n");
+    	System.out.printf("1.human\n2.animal\n3.terrene\n4.plant\n5.back\n>>>>>");
+    	int y = console.nextInt();
+    	String temp ;
+		switch (y) {
+		case 1 :
+			temp = console.nextLine();
+			editHuman();
+			break ;
+		case 2 :
+			temp = console.nextLine();
+			editAnimal();
+			break ;
+		case 3 :
+			record();//
+		    break;
+		case 4 :
+			animal();//
+			break ;
+		case 5 :
+			menu();
+		    break;  
+		default :
+		{
+			System.out.println("The desired option is not allowed!!!");
+			menu() ;
+			break ;
+		}
+		}
 	}
     
+    public static void editHuman() {
+    	System.out.println("please enter the id : ");
+    	String temp = console.nextLine();
+		int Exists = checkID(temp,"human.txt");
+		if (Exists == 0) {//0 vojod nadarad 
+            System.out.println("This ID dosen't exists!!!\n");
+            System.out.print("Try again\n");
+			editHuman();
+        }
+		System.out.printf("Enter the part number you want to edit\n");
+    	System.out.printf("1.race\n2.gender\n3.name\n4.family\n5.age\n6.date of birth\n7.date of death\n8.back\n>>>>>");
+    	int y = console.nextInt();
+    	switch (y) {
+		case 1 :
+		case 2 :
+		case 3 :
+		case 4 :
+		case 5 :
+		{
+			String temp1 = console.nextLine();
+			System.out.printf("Enter the replacement valu : \n");
+			String EditLine = console.nextLine();
+			editFile("human.txt",temp,EditLine,y);
+			break;
+		}
+		case 6 :
+		{
+			System.out.printf("1.year\n2.month\n3.day");
+			int x = console.nextInt();
+			y = y + x - 1 ;
+			String temp1 = console.nextLine();
+			System.out.printf("Enter the replacement valu : \n");
+			String EditLine = console.nextLine();
+			editFile("human.txt",temp,EditLine,y);
+			break;
+		}
+		case 7 :
+		{
+			System.out.printf("1.year\n2.month\n3.day");
+			int x = console.nextInt();
+			y = y + x + 1  ;
+			String temp1 = console.nextLine();
+			System.out.printf("Enter the replacement valu : \n");
+			String EditLine = console.nextLine();
+			editFile("human.txt",temp,EditLine,y);
+			break;
+		}
+		case 8 :
+			edit();
+		    break;  
+		default :
+		{
+			System.out.println("The desired option is not allowed!!!");
+			edit() ;
+			break ;
+		}
+		}
+    }
+    
+    public static void editAnimal() {
+    	System.out.println("please enter the name of the desired animal : ");
+    	String name = console.nextLine();
+		int Exists = checkID(name,"animal.txt");
+		if (Exists == 0) {//0 vojod nadarad 
+            System.out.println("This type of animal dosen't exists!!!");
+            System.out.print("Try again\n");
+			editAnimal();
+        }
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("animal.txt"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith(name)) {
+					line = br.readLine();
+					int number = Integer.parseInt(line);
+					System.out.printf("1.add\n2.reduce\n>>>>>");
+					int x = console.nextInt();
+					System.out.printf("Enter the number you want to change\n");
+					int y = console.nextInt();
+					switch(x) {
+					case 1 :
+					{
+						y = y + number ;
+						String temp1 = Integer.toString(y);
+						editFile("animal.txt",name,temp1,1);
+					}
+					case 2 :
+					{
+						y = number - y ;
+						if(y<0)
+						{
+							System.out.println("The entered value is not allowed!!!");
+							System.out.print("Try again\n");
+							String temp = console.nextLine();
+							editAnimal();
+						}
+						else
+						{
+							String temp1 = Integer.toString(y);
+							editFile("animal.txt",name,temp1,1);
+						}
+					}
+					default :
+					{
+						System.out.println("The desired option is not allowed!!!");
+						editAnimal() ;
+						break ;
+					}	
+					}
+			}
+			}
+				
+		} catch (IOException | NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public static void editLand() {
+    	System.out.println("");
+    }
+    
+    public static void editFile(String file , String FindLine , String EditLine , int numLine){
+    	BufferedReader br;
+		try {
+				br = new BufferedReader(new FileReader(file));
+				FileWriter fw = new FileWriter("temp");
+				String line;
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(FindLine)) {
+						for(int i=0 ; i<numLine ; i++)
+						{
+							fw.write(line + "\n");
+							line = br.readLine();
+						}
+						line = EditLine ;
+					}
+					fw.write(line + "\n");
+				}
+
+				br.close();
+				fw.close();
+				
+				
+				br = new BufferedReader(new FileReader("temp"));
+				FileWriter fw1 = new FileWriter(file);
+				while ((line = br.readLine()) != null) {
+					fw1.write(line + "\n");
+				}
+				br.close();
+				fw1.close();
+				
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.printf("Done Successfully\n");
+        edit();
+    }
+   
     public static void search() {
 		System.out.printf("search in: \n1.human resources\n");
 		System.out.printf("2.animal resources\n");
@@ -1704,14 +1930,14 @@ public class Menu {
             }
 			 reporthuman.close();
 			 
-			System.out.printf("qhom    mard    zan    kol \n");
+			System.out.printf("qhom    male   female total \n");
 			System.out.printf("tork      %d      %d     %d \n", ctorkmale , ctorkfemale , ctork);
 			System.out.printf("kord      %d      %d     %d \n", ckordmale , ckordfemale , ckord);
 			System.out.printf("fars      %d      %d     %d \n", cfarsmale , cfarsfemale , cfars);
 			System.out.printf("arab      %d      %d     %d \n", carabmale , carabfemale , carab);
 			System.out.printf("torkaman  %d      %d     %d \n", ctorkamanmale , ctorkamanfemale , ctorkaman);
 			System.out.printf("baloch    %d      %d     %d \n", cbalochmale , cbalochfemale , cbaloch);
-			System.out.printf("kol jamiat : %d nafar\n", (ctork + ckord + cfars + carab + cbaloch + ctorkaman));
+			System.out.printf("total population:%d    person\n", (ctork + ckord + cfars + carab + cbaloch + ctorkaman));
 			System.out.printf("__________________________________ \n");
 			int o = 0;
             while(o == 0){
@@ -1769,7 +1995,7 @@ public class Menu {
         BufferedReader reportbygh = new BufferedReader(numhuman);
 		String line1 = null;
 		String line2 = null;
-		System.out.printf("id             gensiat     nam    family       sen            salrooztavalod                 salroozmarg \n");
+		System.out.printf("id             gender     name    family       age           birth anniversary             death anniversary \n");
 		if(x == 1)
 		{
 			while( (line1 = reportbygh.readLine() ) != null) 
@@ -1967,7 +2193,7 @@ public class Menu {
 		String line1 = null;
 		String line2 = null;
 		String line3 = null;
-		System.out.printf("id              ghom       nam    family       sen            salrooztavalod                 salroozmarg \n");
+		System.out.printf("id              race        name   family      age         birth anniversary          death anniversary \n");
 
 		if ( x == 1)
 		{
