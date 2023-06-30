@@ -22,3 +22,12 @@ plain
 mountain
 2
 600
+desert
+5
+0
+plain
+5
+0
+mountain
+5
+6

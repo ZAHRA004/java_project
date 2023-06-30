@@ -10,3 +10,11 @@ sea
 shirin
 500
 5
+lake
+8
+8
+8
+sea
+1
+4
+5

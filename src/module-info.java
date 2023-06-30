@@ -6,4 +6,5 @@
  *
  */
 module finalClass {
+    requires java.desktop;
 }

@@ -8,13 +8,17 @@ import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+
 public class Menu {
 	
 	static Scanner console = new Scanner(System.in);
-
+    static grafic m = new grafic();
 	public static void main(String[] args) {
+        
+		m.menu1g();
 		menu();
 	}
+
 	public static void menu() {
 		
 		System.out.printf("1.record\n");
@@ -24,6 +28,7 @@ public class Menu {
 		System.out.printf("5.exit\n");
 		System.out.printf("Enter the desired number : \n");
 		int x = console.nextInt();
+		
 		switch(x)
 		{
 		case 1 :record();
@@ -47,12 +52,14 @@ public class Menu {
 		System.out.println("Selact the desired option : ");
 		System.out.println("1.alive creature\n2.natural resource\n3.Back\n>>>>>");
 		int x = console.nextInt();
+		
 		switch (x) {
 		case 1 :
 		{
 			System.out.println("Selact the desired option : ");
 			System.out.println("1.human\n2.animal\n3.Back\\n>>>>>");
 			int y = console.nextInt();
+			
 			switch (y) {
 			case 1 :
 				human();
@@ -106,10 +113,11 @@ public class Menu {
 	}
 	
 	public static void human() {
-		
+		grafic m = new grafic();
 		System.out.println("Selact the desired option : ");
 		System.out.println("1.fars\n2.arab\n3.tork\n4.kord\n5.baloch\n6.torkaman\n7.back\n>>>>>");
 		int k = console.nextInt();
+		k = m.raceIndex;
 		switch (k) {
 		case 1 :
 		case 2 :
@@ -272,10 +280,11 @@ public class Menu {
 	}
 	
 	public static void person(int number) {
-		
+		grafic m = new grafic();
 		System.out.println("please select gender : ");
 		System.out.println("1.male\n2.female");
 		int gender = console.nextInt();
+		gender = m.genderIndex;
 		if(gender!=2 && gender!=1)
 		{
 			System.out.println("The desired option is not allowed!!!");
