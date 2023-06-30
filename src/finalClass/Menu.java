@@ -875,12 +875,6 @@ public class Menu {
 		System.out.println("please enter the hectares : ");
 		String temp = console.next();
 		String hectares = checkFormat(temp);
-		String type = "" ;
-		if(number == 4)
-		{
-			System.out.println("please enter the type : ");
-			type = console.next();
-		}
 		switch(number) {// 1.desert\n2.plain\n4.forest
 		case 1 :
 		{
@@ -924,10 +918,9 @@ public class Menu {
 			    } 
 			break ;
 		}
-		case 3 :
+		case 4 :
 		{
 			Forest area = new Forest();
-			area.setType(type);
 			area.setNumber(hectares);
 			try {  
 			      FileWriter myWriter = new FileWriter("land.txt",true);
@@ -936,7 +929,7 @@ public class Menu {
 			      Writer.append("\n");
 			      Writer.write(area.getNumber());
 			      Writer.append("\n");
-			      Writer.write(area.getType());
+			      Writer.write("0");
 			      Writer.append("\n");
 			      System.out.println("Done Successfully");
 			      Writer.close();
@@ -1174,10 +1167,12 @@ public class Menu {
 			editAnimal();
 			break ;
 		case 3 :
-			record();//
+			temp = console.nextLine();
+			editTerrene();
 		    break;
 		case 4 :
-			animal();//
+			temp = console.nextLine();
+			editPlant();
 			break ;
 		case 5 :
 			menu();
@@ -1310,8 +1305,375 @@ public class Menu {
 		}
     }
     
-    public static void editLand() {
-    	System.out.println("");
+    public static void editTerrene() {
+    	System.out.print("1.land\n2.water area\n3.back\n>>>>>");
+    	int z = console.nextInt();
+    	switch(z) {
+    	case 1 :
+    	{
+    		System.out.println("1.desert\n2.plain\n3.forest\n4.mountain\n5.back\n>>>>>");
+    		int k = console.nextInt();
+    		switch(k) {
+    		case 1 :
+    		case 2 : 
+    		case 3 :
+    		{
+    			String teemp = console.nextLine();
+    			String name = "" ;
+    			switch(k){
+    			case 1 :
+    				name = "desert";
+    				break ;
+    			case 2 :
+    				name = "plain";
+    				break ;
+    			case 3 :
+    				name = "forest";
+    				break ;
+    			}
+    			int Exists = checkID(name,"land.txt");
+    			if (Exists == 0) {//0 vojod nadarad 
+    	            System.out.println("This type of land dosen't exists!!!");
+    	            System.out.print("Try again\n");
+    				editTerrene();
+    	        }
+    			BufferedReader br;
+    			try {
+    				br = new BufferedReader(new FileReader("land.txt"));
+    				String line;
+    				while ((line = br.readLine()) != null) {
+    					if (line.startsWith(name)) {
+    						line = br.readLine();
+    						int number = Integer.parseInt(line);
+    						System.out.printf("1.add\n2.reduce\n>>>>>");
+    						int x = console.nextInt();
+    						System.out.printf("Enter the number you want to change\n");
+    						int y = console.nextInt();
+    						switch(x) {
+    						case 1 :
+    						{
+    							y = y + number ;
+    							String temp1 = Integer.toString(y);
+    							editFile("land.txt",name,temp1,1);
+    						}
+    						case 2 :
+    						{
+    							y = number - y ;
+    							if(y<0)
+    							{
+    								System.out.println("The entered value is not allowed!!!");
+    								System.out.print("Try again\n");
+    								editTerrene();
+    							}
+    							else
+    							{
+    								String temp1 = Integer.toString(y);
+    								editFile("land.txt",name,temp1,1);
+    							}
+    						}
+    						default :
+    						{
+    							System.out.println("The desired option is not allowed!!!");
+    							editTerrene() ;
+    							break ;
+    						}	
+    						}
+    				}
+    				}
+    					
+    			} catch (IOException | NumberFormatException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
+    		case 4 :
+    		{
+    			String teemp = console.nextLine();
+    	    	String name = "mountain";
+    			int Exists = checkID(name,"land.txt");
+    			if (Exists == 0) {//0 vojod nadarad 
+    	            System.out.println("This type of land dosen't exists!!!");
+    	            System.out.print("Try again\n");
+    				editTerrene();
+    	        }
+    			System.out.printf("Enter the part number you want to edit\n");
+    	    	System.out.printf("1.number\n2.height\n3.back\n>>>>>");
+    	    	int i = console.nextInt();
+    	    	switch(i) {
+    	    	case 1 :
+    	    	case 2 :
+    	    	{
+    	    		BufferedReader br;
+        			try {
+        				br = new BufferedReader(new FileReader("land.txt"));
+        				String line;
+        				while ((line = br.readLine()) != null) {
+        					if (line.startsWith(name)) {
+        						line = br.readLine();
+        						if(i==2)
+        						{
+        							line = br.readLine();
+        						}
+        						int number = Integer.parseInt(line);
+        						System.out.printf("1.add\n2.reduce\n>>>>>");
+        						int x = console.nextInt();
+        						System.out.printf("Enter the number you want to change\n");
+        						int y = console.nextInt();
+        						switch(x) {
+        						case 1 :
+        						{
+        							y = y + number ;
+        							String temp1 = Integer.toString(y);
+        							editFile("land.txt",name,temp1,i);
+        						}
+        						case 2 :
+        						{
+        							y = number - y ;
+        							if(y<0)
+        							{
+        								System.out.println("The entered value is not allowed!!!");
+        								System.out.print("Try again\n");
+        								String tempp = console.nextLine();
+        								editTerrene();
+        							}
+        							else
+        							{
+        								String temp1 = Integer.toString(y);
+        								editFile("land.txt",name,temp1,i);
+        							}
+        						}
+        						default :
+        						{
+        							System.out.println("The desired option is not allowed!!!");
+        							editTerrene() ;
+        							break ;
+        						}	
+        						}
+        				}
+        				}
+        					
+        			} catch (IOException | NumberFormatException e) {
+        				// TODO Auto-generated catch block
+        				e.printStackTrace();
+        			}
+    	    	}
+    	    	case 3 : 
+            	{
+            		edit();
+            		break ;
+            	}
+            	default :
+        		{
+        			System.out.println("The desired option is not allowed!!!");
+        			editTerrene() ;
+        			break ;
+        		}	
+    	    	}
+    	    	
+    		}
+    		case 5 : 
+        	{
+        		edit();
+        		break ;
+        	}
+        	default :
+    		{
+    			System.out.println("The desired option is not allowed!!!");
+    			editTerrene() ;
+    			break ;
+    		}	
+    		}
+    	}
+    	case 2 :
+    	{
+    		String teemp = console.nextLine();
+    		System.out.println("please enter the name of the desired water area : ");
+	    	String name = console.nextLine();
+			int Exists = checkID(name,"waterArea.txt");
+			if (Exists == 0) {//0 vojod nadarad 
+	            System.out.println("This type of land dosen't exists!!!");
+	            System.out.print("Try again\n");
+				editTerrene();
+	        }
+			System.out.printf("Enter the part number you want to edit\n");
+	    	System.out.printf("1.depth\n2.number\n3.back\n>>>>>");
+	    	int i = console.nextInt();
+	    	switch(i) {
+	    	case 1 :
+	    	case 2 :
+	    	{
+	    		BufferedReader br;
+    			try {
+    				br = new BufferedReader(new FileReader("waterArea.txt"));
+    				String line;
+    				while ((line = br.readLine()) != null) {
+    					if (line.startsWith(name)) {
+    						line = br.readLine();
+    						if(i==2)
+    						{
+    							line = br.readLine();
+    						}
+    						int number = Integer.parseInt(line);
+    						System.out.printf("1.add\n2.reduce\n>>>>>");
+    						int x = console.nextInt();
+    						System.out.printf("Enter the number you want to change\n");
+    						int y = console.nextInt();
+    						switch(x) {
+    						case 1 :
+    						{
+    							y = y + number ;
+    							String temp1 = Integer.toString(y);
+    							editFile("waterArea.txt",name,temp1,i);
+    						}
+    						case 2 :
+    						{
+    							y = number - y ;
+    							if(y<0)
+    							{
+    								System.out.println("The entered value is not allowed!!!");
+    								System.out.print("Try again\n");
+    								String tempp = console.nextLine();
+    								editTerrene();
+    							}
+    							else
+    							{
+    								String temp1 = Integer.toString(y);
+    								editFile("waterArea.txt",name,temp1,i);
+    							}
+    						}
+    						default :
+    						{
+    							System.out.println("The desired option is not allowed!!!");
+    							editTerrene() ;
+    							break ;
+    						}	
+    						}
+    				}
+    				}
+    					
+    			} catch (IOException | NumberFormatException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+	    	}
+	    	case 3 : 
+        	{
+        		edit();
+        		break ;
+        	}
+        	default :
+    		{
+    			System.out.println("The desired option is not allowed!!!");
+    			editTerrene() ;
+    			break ;
+    		}	
+	    	}
+    	}
+    	case 3 : 
+    	{
+    		edit();
+    		break ;
+    	}
+    	default :
+		{
+			System.out.println("The desired option is not allowed!!!");
+			editTerrene() ;
+			break ;
+		}	
+    	}	
+    }
+    
+    public static void editPlant() {
+    	System.out.println("1.tree\n2.flower\n3.medical\n4.Fruit\n5.Fruitless\n6.back\n>>>>>");
+    	int z = console.nextInt();
+    	String type = "" ;
+    	switch(z)
+    	{
+    	case 1 :
+    		type = "tree";
+    		break;
+    	case 2 :
+    		type = "flower";
+    		break;
+    	case 3 :
+    		type = "medical";
+    		break;
+    	case 4 :
+    		type = "fruit";
+    		break;
+    	case 5 :
+    		type = "fruitless";
+    		break;
+    	}
+    	int Exists = checkID(type,"plant.txt");
+		if (Exists == 0) {//0 vojod nadarad 
+            System.out.println("This type of land dosen't exists!!!");
+            System.out.print("Try again\n");
+			editPlant();
+        }
+		String teemp = console.nextLine();
+		System.out.println("please enter the type of the desired plant : ");
+    	String name = console.nextLine();
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("plant.txt"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith(type)) {
+					String lineNumber = br.readLine();
+					line = br.readLine();
+					if (line.startsWith(name))
+					{
+						
+					}
+					else
+					{
+						System.out.println("This type of land dosen't exists!!!");
+			            System.out.print("Try again\n");
+						editPlant();
+					}
+					int number = Integer.parseInt(lineNumber);
+					System.out.printf("1.add\n2.reduce\n>>>>>");
+					int x = console.nextInt();
+					System.out.printf("Enter the number you want to change\n");
+					int y = console.nextInt();
+					switch(x) {
+					case 1 :
+					{
+						y = y + number ;
+						String temp1 = Integer.toString(y);
+						editFile("plant.txt",type,temp1,1);
+					}
+					case 2 :
+					{
+						y = number - y ;
+						if(y<0)
+						{
+							System.out.println("The entered value is not allowed!!!");
+							System.out.print("Try again\n");
+							teemp = console.nextLine();
+							editPlant();
+						}
+						else
+						{
+							String temp1 = Integer.toString(y);
+							editFile("plant.txt",type,temp1,1);
+						}
+					}
+					default :
+					{
+						System.out.println("The desired option is not allowed!!!");
+						editPlant() ;
+						break ;
+					}	
+					}
+			}
+			}
+				
+		} catch (IOException | NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public static void editFile(String file , String FindLine , String EditLine , int numLine){

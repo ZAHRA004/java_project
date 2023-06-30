@@ -1,5 +1,5 @@
 fruit
-100
+110
 sib
 flower
 100
@@ -11,7 +11,7 @@ feedStuf
 506
 good:)
 fruitLess
-50
+110
 sabz
 flower
 20
