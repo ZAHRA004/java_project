@@ -19,16 +19,19 @@ public class grafic implements ActionListener{
                 textnameAnimal , textNum , textidAnimal , texttypelake , textnumlake ,textdepthlake , texttypesea , textnumsea ,textdepthsea ,
                 texthektardesert ,  texthektarplain , textnummountain , textheightmountain , texthektarforest , texttypeforest ,
                 texttypefruit , textnumfruit , texttypefruitless , textnumfruitless , texttypeflower , textnumflower , texttypemedical , textnummedical ,
-                texttypefeedstuf , textnumfeedstuf;
+                texttypefeedstuf , textnumfeedstuf , textsearchethnicity ;
     JCheckBox checkalive , checkdead , checkspecial;
-    JFrame f1, f2, f3, f4 , f5 , f6 , f7, f8 , f9 , f10;
+    JFrame f1, f2, f3, f4 , f5 , f6 , f7, f8 , f9 , f10, f11 , f12 , f13;
     JButton f1b1 , f1b2 , f1b3 , f1b4 , f1b5,
             f2b1 , f2b2 , f2b3 ,
             f3b1 , f3b2 , f3b3 , f3b4 , f3b5 ,
             f4b1 , f4b2 , f4b3 , f4b4 , f4b5 ,
             f5b1 , f5b2 , f5b3 ,
             f6b1 , f6b2 , f6b3 ,
-            f7b1 , f8b1 , f9b1 , f10b1;
+            f7b1 , f8b1 , f9b1 , f10b1 ,
+            f11b1 , f11b2 , f11b3 , f11b4 ,
+            f12b1 , f12b2 , f12b3 , f12b4 ,
+            f13b1 , f13b2 ;
     JComboBox cbrace , cbgender, cbanimal , cbterrene , cbwater , cbland , cbplant , cbtree;
 
     public void menu1g ()
@@ -342,7 +345,7 @@ public class grafic implements ActionListener{
     }
     public void menu1_2g()
     {
-
+                  //edite
     }
     public void menu1_3g()
     {
@@ -375,6 +378,114 @@ public class grafic implements ActionListener{
 		f3.add(f3b5);
 		f3b5.setBounds(200,300,150, 50);
         f3b5.addActionListener(this);
+
+    }
+    public void menu1_3g_human()
+    {
+        f11 = new JFrame("search in human resources");
+		f11.setSize(500, 500);
+		f11.setLayout(null);
+        f11.setVisible(true);
+
+		f11b1=new JButton("based on ethnicity");
+		f11.add(f11b1);
+		f11b1.setBounds(100,100,100, 50);
+        f11b1.addActionListener(this);
+
+        f11b2=new JButton("based on gender");
+		f11.add(f11b2);
+		f11b2.setBounds(300,100,100, 50);
+        f11b2.addActionListener(this);
+
+        f11b3=new JButton("based on id");
+		f11.add(f11b3);
+		f11b3.setBounds(100,200,100, 50);
+        f11b3.addActionListener(this);
+
+        f11b4=new JButton("back");
+		f11.add(f11b4);
+		f11b4.setBounds(300,200,100, 50);
+        f11b4.addActionListener(this);
+
+    }
+    public void menu1_3g_human_ethnicity()
+    {
+        f13 = new JFrame("search in human resources based on ethnicity");
+		f13.setSize(500, 500);
+		f13.setLayout(null);
+        f13.setVisible(true);
+
+        textsearchethnicity=new JTextField("Enter ethnicity"); 
+        textsearchethnicity.setBounds(50,100, 200,30);
+        f13.add(textsearchethnicity);
+
+        f13b1 = new JButton("search");
+        f13.add(f13b1);
+		f13b1.setBounds(300,100,100, 30);
+        f13b1.addActionListener(this);
+        
+        f13b2 = new JButton("back");
+        f13.add(f13b2);
+		f13b2.setBounds(100,300,100, 30);
+        f13b2.addActionListener(this);
+
+    }
+    public void menu1_3g_human_gender()
+    {
+
+    }
+    public void menu1_3g_human_id()
+    {
+
+    }
+    public void menu1_3g_animal()
+    {
+        f12 = new JFrame("search in animal resources");
+		f12.setSize(500, 500);
+		f12.setLayout(null);
+        f12.setVisible(true);
+
+		f12b1=new JButton("based on type");
+		f12.add(f12b1);
+		f12b1.setBounds(100,100,100, 50);
+        f12b1.addActionListener(this);
+
+        f12b2=new JButton("based on name");
+		f12.add(f12b2);
+		f12b2.setBounds(300,100,100, 50);
+        f12b2.addActionListener(this);
+
+        f12b3=new JButton("based on id(Just for special animal)");
+		f12.add(f12b3);
+		f12b3.setBounds(100,200,100, 50);
+        f12b3.addActionListener(this);
+
+        f12b4=new JButton("back");
+		f12.add(f12b4);
+		f12b4.setBounds(300,200,100, 50);
+        f12b4.addActionListener(this);
+
+        
+
+    }
+    public void menu1_3g_animal_type()
+    {
+
+    }
+    public void menu1_3g_animal_name()
+    {
+
+    }
+    public void menu1_3g_animal_id()
+    {
+
+    }
+    public void menu1_3g_plant()
+    {
+
+    }
+    public void menu1_3g_territorial()
+    {
 
     }
     public void menu1_4g()
@@ -765,7 +876,8 @@ public class grafic implements ActionListener{
         }
         if(e.getSource() == f9b1)
         {
-
+            f9.setVisible(false);
+            menu1_1_natural();
         }
 
         //record_natural_plant
@@ -906,7 +1018,6 @@ public class grafic implements ActionListener{
         }
         if(e.getSource() == cbtree)
         {
-            System.out.printf("000000000");
             if(cbtree.getSelectedIndex() == 0)
             {
                 if(this.texttypefruitless != null)
@@ -967,7 +1078,8 @@ public class grafic implements ActionListener{
         }
         if(e.getSource() == f10b1)
         {
-
+            f10.setVisible(false);
+            menu1_1_natural();
         }
 
 
@@ -977,19 +1089,23 @@ public class grafic implements ActionListener{
         //search
         if(e.getSource() == f3b1)
         {
-
+            f3.setVisible(false);
+            menu1_3g_human();
         }
         if(e.getSource() == f3b2)
         {
-
+            f3.setVisible(false);
+            menu1_3g_animal();
         }
         if(e.getSource() == f3b3)
         {
-
+            f3.setVisible(false);
+            menu1_3g_plant();
         }
         if(e.getSource() == f3b4)
         {
-
+            f3.setVisible(false);
+            menu1_3g_territorial();
         }
         if(e.getSource() == f3b5)
         {
@@ -997,6 +1113,59 @@ public class grafic implements ActionListener{
             menu1g();
 
         }
+        //search_human
+        if(e.getSource() == f11b1)
+        {
+            f11.setVisible(false);
+            menu1_3g_human_ethnicity();
+        }
+        if(e.getSource() == f11b2)
+        {
+            f11.setVisible(false);
+            menu1_3g_human_gender();
+        }
+        if(e.getSource() == f11b3)
+        {
+            f11.setVisible(false);
+            menu1_3g_human_id();
+        }
+        if(e.getSource() == f11b4)
+        {
+            f11.setVisible(false);
+            menu1_3g();
+        }
+        //search_human_ethnicity
+        if(e.getSource() == f13b1)
+        {
+            
+        }
+        if(e.getSource() == f13b2)
+        {
+            f13.setVisible(false);
+            menu1_3g_human();
+        }
+        //search_animal
+        if(e.getSource() == f12b1)
+        {
+            f12.setVisible(false);
+            menu1_3g_animal_type();
+        }
+        if(e.getSource() == f12b2)
+        {
+            f12.setVisible(false);
+            menu1_3g_animal_name();
+        }
+        if(e.getSource() == f12b3)
+        {
+            f12.setVisible(false);
+            menu1_3g_animal_id();
+        }
+        if(e.getSource() == f12b4)
+        {
+            f12.setVisible(false);
+            menu1_3g();
+        }
+
 
         //report
         if(e.getSource() == f4b1)
