@@ -1,5 +1,7 @@
 package finalClass;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -715,6 +717,57 @@ public class Menu {
 		
 		System.out.println("please enter the type : ");
 		String type = console.next();
+		int Exists = checkID(type,"animal.txt");
+		if (Exists == 1) {//1 vojod darad 
+			System.out.println("please enter the number : ");
+			String temp1 = console.next();
+			String NewNum = checkFormat(temp1);
+			int NewNumber = Integer.parseInt(NewNum);
+			BufferedReader br;
+			String SNumber = "";
+			try {
+				br = new BufferedReader(new FileReader("animal.txt"));
+				String line;
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(type)) {
+						line = br.readLine();
+						number = Integer.parseInt(line);
+						NewNumber = number + NewNumber ;
+						SNumber = Integer.toString(NewNumber);
+					}
+				}
+				br.close();
+				br = new BufferedReader(new FileReader("animal.txt"));
+				FileWriter fw = new FileWriter("temp");
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(type)) {
+						for(int i=0 ; i<1 ; i++)
+						{
+							fw.write(line + "\n");
+							line = br.readLine();
+						}
+						line = SNumber ;
+					}
+					fw.write(line + "\n");
+				}
+
+				br.close();
+				fw.close();
+				
+				
+				br = new BufferedReader(new FileReader("temp"));
+				FileWriter fw1 = new FileWriter("animal.txt");
+				while ((line = br.readLine()) != null) {
+					fw1.write(line + "\n");
+				}
+				br.close();
+				fw1.close();
+			} catch (IOException | NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			menu();
+		}
 		System.out.println("Is it a special animmal? ");
 		System.out.println("1.Yes\n2.No\n>>>>>");
 		int option = console.nextInt();
@@ -727,7 +780,7 @@ public class Menu {
 		{
 			System.out.println("please enter the id : ");
 			temp = console.next();
-			id = checkFormat(temp);
+			id = checkFormat(temp);	
 			num = "1" ;
 			break;
 		}
@@ -812,6 +865,34 @@ public class Menu {
 		System.out.println("please enter the depth : ");
 		temp = console.next();
 		String depth = checkFormat(temp);
+		
+		int totalNum = 0 ;
+		String Snumber = "" ;
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("waterArea.txt"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith(type)) {
+					line = br.readLine();
+					if (line.startsWith(depth))
+					{
+						String lineNumber = br.readLine();
+						int FNum = Integer.parseInt(num);
+						line = br.readLine();
+						totalNum = Integer.parseInt(lineNumber);
+						totalNum = FNum + totalNum ;
+						Snumber = Integer.toString(totalNum);
+						editFile("waterArea.txt",depth,Snumber,1);
+					    menu();
+					}	
+			}
+			}
+		} catch (IOException | NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		switch(number) {//1.lake\n2.sea
 		case 1 :
 		{
@@ -875,6 +956,67 @@ public class Menu {
 		System.out.println("please enter the hectares : ");
 		String temp = console.next();
 		String hectares = checkFormat(temp);
+		String type = "";
+		switch(number) {
+		case 1 :
+			type = "desert";
+			break;
+		case 2 :
+			type = "plain";
+			break;
+		case 4 :
+			type = "forest";
+			break;
+		}
+		int Exists = checkID(type,"land.txt");
+		if (Exists == 1) {//1 vojod darad 
+			int NewNumber = Integer.parseInt(hectares);
+			BufferedReader br;
+			String SNumber = "";
+			try {
+				br = new BufferedReader(new FileReader("land.txt"));
+				String line;
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(type)) {
+						line = br.readLine();
+						number = Integer.parseInt(line);
+						NewNumber = number + NewNumber ;
+						SNumber = Integer.toString(NewNumber);
+					}
+				}
+				br.close();
+				br = new BufferedReader(new FileReader("land.txt"));
+				FileWriter fw = new FileWriter("temp");
+				while ((line = br.readLine()) != null) {
+					if (line.startsWith(type)) {
+						for(int i=0 ; i<1 ; i++)
+						{
+							fw.write(line + "\n");
+							line = br.readLine();
+						}
+						line = SNumber ;
+					}
+					fw.write(line + "\n");
+				}
+
+				br.close();
+				fw.close();
+				
+				
+				br = new BufferedReader(new FileReader("temp"));
+				FileWriter fw1 = new FileWriter("land.txt");
+				while ((line = br.readLine()) != null) {
+					fw1.write(line + "\n");
+				}
+				br.close();
+				fw1.close();
+			} catch (IOException | NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			menu();
+		}
+		
 		switch(number) {// 1.desert\n2.plain\n4.forest
 		case 1 :
 		{
@@ -953,6 +1095,32 @@ public class Menu {
 		System.out.println("please enter the height : ");
 		temp = console.next();
 		String height = checkFormat(temp);
+    	int totalNum=0 ;
+    	String Snumber = "" ;
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("land.txt"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith("mountain")) {
+					String lineNumber = br.readLine();
+					line = br.readLine();
+					if (line.startsWith(height))
+					{
+						int FNum = Integer.parseInt(num);
+						line = br.readLine();
+						totalNum = Integer.parseInt(lineNumber);
+						totalNum = FNum + totalNum ;
+						Snumber = Integer.toString(totalNum);
+						editPreviousLine("land.txt",height,Snumber);
+						menu();	
+					}	
+			}
+			}
+		} catch (IOException | NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Mountain area = new Mountain();
 		area.setHeight(height);
 		area.setNumber(num);
@@ -982,6 +1150,48 @@ public class Menu {
 		System.out.println("please enter the number : ");
 		String temp = console.next();
 		String num = checkFormat(temp);
+		String pType = "" ;
+		switch(number) 
+		{
+		case 2 :
+			pType = "flower";
+			break;
+		case 3 :
+			pType = "medical";
+			break;
+		case 4 :
+			pType = "feedStuf";
+			break;
+		case 5 :
+			pType = "fruit";
+			break;
+		case 6 :
+			pType = "fruitLess";
+			break;
+		}
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("plant.txt"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith(pType)) {
+					String lineNumber = br.readLine();
+					line = br.readLine();
+					if (line.startsWith(type))
+					{
+						int NewNumber = Integer.parseInt(num);
+						int OldNumber = Integer.parseInt(lineNumber);
+						OldNumber = OldNumber + NewNumber ;
+						String temp1 = Integer.toString(OldNumber);
+						editPreviousLine("plant.txt",type,temp1);
+						edit();	
+					}
+				}
+			}
+		}catch (IOException | NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		switch(number) {// 1.desert\n2.plain\n4.forest
 		case 2 :
 		{
@@ -1209,6 +1419,7 @@ public class Menu {
 			System.out.printf("Enter the replacement valu : \n");
 			String EditLine = console.nextLine();
 			editFile("human.txt",temp,EditLine,y);
+			edit();
 			break;
 		}
 		case 6 :
@@ -1220,6 +1431,7 @@ public class Menu {
 			System.out.printf("Enter the replacement valu : \n");
 			String EditLine = console.nextLine();
 			editFile("human.txt",temp,EditLine,y);
+			edit();
 			break;
 		}
 		case 7 :
@@ -1231,6 +1443,7 @@ public class Menu {
 			System.out.printf("Enter the replacement valu : \n");
 			String EditLine = console.nextLine();
 			editFile("human.txt",temp,EditLine,y);
+			edit();
 			break;
 		}
 		case 8 :
@@ -1272,6 +1485,8 @@ public class Menu {
 						y = y + number ;
 						String temp1 = Integer.toString(y);
 						editFile("animal.txt",name,temp1,1);
+						edit();
+						break;
 					}
 					case 2 :
 					{
@@ -1287,7 +1502,9 @@ public class Menu {
 						{
 							String temp1 = Integer.toString(y);
 							editFile("animal.txt",name,temp1,1);
+							edit();
 						}
+						break;
 					}
 					default :
 					{
@@ -1355,6 +1572,8 @@ public class Menu {
     							y = y + number ;
     							String temp1 = Integer.toString(y);
     							editFile("land.txt",name,temp1,1);
+    							edit();
+    							break;
     						}
     						case 2 :
     						{
@@ -1369,7 +1588,9 @@ public class Menu {
     							{
     								String temp1 = Integer.toString(y);
     								editFile("land.txt",name,temp1,1);
+    								edit();
     							}
+    							break;
     						}
     						default :
     						{
@@ -1425,6 +1646,8 @@ public class Menu {
         							y = y + number ;
         							String temp1 = Integer.toString(y);
         							editFile("land.txt",name,temp1,i);
+        							edit();
+        							break;
         						}
         						case 2 :
         						{
@@ -1440,7 +1663,9 @@ public class Menu {
         							{
         								String temp1 = Integer.toString(y);
         								editFile("land.txt",name,temp1,i);
+        								edit();
         							}
+        							break;
         						}
         						default :
         						{
@@ -1524,6 +1749,8 @@ public class Menu {
     							y = y + number ;
     							String temp1 = Integer.toString(y);
     							editFile("waterArea.txt",name,temp1,i);
+    							edit();
+    							break;
     						}
     						case 2 :
     						{
@@ -1539,7 +1766,9 @@ public class Menu {
     							{
     								String temp1 = Integer.toString(y);
     								editFile("waterArea.txt",name,temp1,i);
+    								edit();
     							}
+    							break;
     						}
     						default :
     						{
@@ -1642,7 +1871,9 @@ public class Menu {
 					{
 						y = y + number ;
 						String temp1 = Integer.toString(y);
-						editFile("plant.txt",type,temp1,1);
+						editPreviousLine("plant.txt",name,temp1);
+						edit();	
+						break;
 					}
 					case 2 :
 					{
@@ -1657,8 +1888,10 @@ public class Menu {
 						else
 						{
 							String temp1 = Integer.toString(y);
-							editFile("plant.txt",type,temp1,1);
+							editPreviousLine("plant.txt",name,temp1);
+							edit();				
 						}
+						break;
 					}
 					default :
 					{
@@ -1711,7 +1944,38 @@ public class Menu {
 			e.printStackTrace();
 		}
         System.out.printf("Done Successfully\n");
-        edit();
+    }
+    
+    public static void editPreviousLine(String filePath,String targetLine,String newContent) {
+    	// khandad file v tashkil yek list
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // peida kardan target line v taghir previous line
+        int targetIndex = lines.indexOf(targetLine);
+        if (targetIndex > 0) {
+            int previousIndex = targetIndex - 1;
+            lines.set(previousIndex, newContent);
+        }
+
+        // neveshtan modified lines dobare dar file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        
     }
    
     public static void search() {

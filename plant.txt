@@ -1,8 +1,8 @@
 fruit
-110
+120
 sib
 flower
-100
+10
 roz
 medical
 50
@@ -14,5 +14,8 @@ fruitLess
 110
 sabz
 flower
-20
-roz
+110
+maryam
+fruit
+4
+alo
