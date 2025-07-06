@@ -16,7 +16,7 @@ A clean implementation of object-oriented programming principles for managing fo
 
 ## Documentation
 - Complete project details: [details.pdf](./details.pdf)
-- UML diagram: [UML.pdf](./UML.pdf)
+- UML diagram: [UML..pdf](./UML..pdf)
 
 ## Usage
 ```bash
